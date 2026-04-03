@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trả lời Lý thuyết - Đề số 1</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; padding: 40px; color: #333; background: #f4f7f6; }
+        .container { max-width: 900px; margin: auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 15px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        h3 { color: #2980b9; margin-top: 25px; }
+        code { background: #eee; padding: 2px 5px; border-radius: 4px; font-family: monospace; }
+        pre { background: #2d3436; color: #dfe6e9; padding: 15px; border-radius: 5px; overflow-x: auto; }
+        .back-link { display: inline-block; margin-top: 30px; text-decoration: none; color: #3498db; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Phần 1: Trả lời Lý thuyết</h1>
+
+        <h3>1. Position Absolute vs Relative</h3>
+        <p><b>Relative:</b> Phần tử vẫn nằm trong luồng tài liệu. Khi dịch chuyển bằng top/left, nó để lại khoảng trống tại vị trí cũ.</p>
+        <p><b>Absolute:</b> Phần tử bị tách khỏi luồng tài liệu, định vị theo phần tử cha gần nhất có <code>position: relative</code>.</p>
+        <p><i>Ví dụ:</i> Dùng để đặt icon "Sale" đè lên góc ảnh sản phẩm trong layout responsive.</p>
+
+        <h3>2. Domain, Hosting & DNS</h3>
+        <p><b>Quy trình:</b> Đăng ký tên miền -> Thuê Hosting -> Trỏ bản ghi DNS (A hoặc CNAME) từ Domain về IP của Hosting.</p>
+        <p><b>DNS:</b> Đóng vai trò là bộ thông dịch từ tên miền sang địa chỉ IP máy chủ.</p>
+        <p><b>Công cụ:</b> GitHub Pages (miễn phí cho web tĩnh), Netlify (tối ưu deploy tự động).</p>
+
+        <h3>3. Let, Const và Var</h3>
+        <p><b>Var:</b> Function scope, có hoisting (giá trị undefined). <b>Let/Const:</b> Block scope, không cho phép truy cập trước khai báo (TDZ).</p>
+        <p><b>Debug:</b> Sử dụng Tab <b>Console</b> hoặc <b>Sources</b> (đặt breakpoint) trong Chrome DevTools để kiểm tra giá trị biến từng dòng.</p>
+
+        <h3>4. Event Delegation</h3>
+        <p><b>Khái niệm:</b> Kỹ thuật gắn sự kiện vào phần tử cha thay vì từng phần tử con đơn lẻ, tận dụng cơ chế Event Bubbling.</p>
+        <p><b>Lợi ích:</b> Tăng hiệu suất, quản lý tốt các phần tử được thêm vào danh sách động (dynamic list) bằng JS.</p>
+
+        <a href="index.html" class="back-link">← Quay lại Trang chủ</a>
+    </div>
+</body>
+</html>

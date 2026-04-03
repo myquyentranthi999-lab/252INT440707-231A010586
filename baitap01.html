@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sản phẩm Thủ công</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .search-box { margin-bottom: 20px; width: 100%; max-width: 400px; padding: 10px; font-size: 16px; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+        .product-item { border: 1px solid #ddd; padding: 15px; border-radius: 8px; text-align: center; background: #fdf5e6; }
+        .error { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h2>Miran's Craft Studio - Sản phẩm</h2>
+    <input type="text" id="searchInput" class="search-box" placeholder="Tìm kiếm sản phẩm (vd: Hoa len)...">
+    <div id="productList" class="product-grid"></div>
+    <p id="errorMsg" class="error"></p>
+
+    <br><a href="index.html">← Quay lại Menu</a>
+
+    <script>
+        const products = [
+            { id: 1, name: "Hoa len hướng dương", price: "50,000đ" },
+            { id: 2, name: "Móc khóa thú bông", price: "35,000đ" },
+            { id: 3, name: "Túi xách len DIY", price: "150,000đ" },
+            { id: 4, name: "Khăn quàng cổ len", price: "120,000đ" },
+            { id: 5, name: "Mũ len mùa đông", price: "90,000đ" }
+        ];
+
+        const productListEl = document.getElementById('productList');
+        const searchInput = document.getElementById('searchInput');
+        const errorMsg = document.getElementById('errorMsg');
+
+        function renderProducts(items) {
+            productListEl.innerHTML = ''; // Clear cũ
+            errorMsg.textContent = ''; // Clear lỗi
+
+            if (items.length === 0) {
+                errorMsg.textContent = 'Không tìm thấy sản phẩm nào phù hợp!';
+                return;
+            }
+
+            items.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'product-item';
+                // Sử dụng textContent để tránh XSS Injection
+                const nameEl = document.createElement('h3');
+                nameEl.textContent = item.name;
+                const priceEl = document.createElement('p');
+                priceEl.textContent = item.price;
+                
+                div.appendChild(nameEl);
+                div.appendChild(priceEl);
+                productListEl.appendChild(div);
+            });
+        }
+
+        // Init
+        renderProducts(products);
+
+        // Sự kiện tìm kiếm (Tối ưu tìm kiếm bằng event input)
+        searchInput.addEventListener('input', (e) => {
+            const keyword = e.target.value.trim().toLowerCase();
+            const filtered = products.filter(p => p.name.toLowerCase().includes(keyword));
+            renderProducts(filtered);
+        });
+    </script>
+</body>
+</html>

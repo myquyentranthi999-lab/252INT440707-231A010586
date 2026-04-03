@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đếm ngược</title>
+    <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; background-color: #222; color: white; }
+        .timer { font-size: 80px; font-weight: bold; transition: color 0.3s; }
+        
+        /* CSS Animation khi dưới 1 phút */
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; color: red; }
+            100% { opacity: 1; }
+        }
+        .warning { color: red; animation: blink 1s infinite; }
+        .menu-link { margin-top: 30px; color: #00ffcc; text-decoration: none; font-size: 18px;}
+    </style>
+</head>
+<body>
+    <h1>Thời gian làm bài</h1>
+    <div id="display" class="timer">10:00</div>
+    <a href="index.html" class="menu-link">← Quay lại Menu</a>
+
+    <script>
+        let totalSeconds = 10 * 60; // 10 phút
+        const display = document.getElementById('display');
+
+        const timerInterval = setInterval(() => {
+            totalSeconds--;
+            
+            // Tính toán MM:SS
+            let minutes = Math.floor(totalSeconds / 60);
+            let seconds = totalSeconds % 60;
+            
+            // Thêm số 0 đằng trước nếu nhỏ hơn 10
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+            
+            display.textContent = `${minutes}:${seconds}`;
+
+            // Thêm animation khi dưới 1 phút (60s)
+            if(totalSeconds < 60) {
+                display.classList.add('warning');
+            }
+
+            // Xử lý khi hết giờ
+            if(totalSeconds <= 0) {
+                clearInterval(timerInterval); // CỰC KỲ QUAN TRỌNG: Ngăn memory leak
+                display.textContent = "00:00";
+                display.classList.remove('warning');
+                display.style.color = "red";
+                // Chờ DOM cập nhật xong mới alert
+                setTimeout(() => {
+                    alert("Hết giờ làm bài!");
+                }, 100);
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
